@@ -1,0 +1,130 @@
+import { Tabs } from 'nextra/components'
+
+# Installation
+
+이 섹션에서는 Next.js 앱을 새로 생성하고 로컬 환경에서 실행하는 방법을 알아봅니다.
+
+## 빠른 시작 (Quick Start)
+
+아래 단계를 따라 새로운 Next.js 프로젝트를 만들어보세요.
+
+1. 새로운 `my-app` 앱 이름을 생성합니다.  
+2. `cd my-app`으로 이동한 뒤 개발 서브를 실행합니다.
+3. 브라우저에서 [http://localhost:3000](http://localhost:3000)에 접속합니다.
+
+<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+  <Tabs.Tab>
+    ```bash filename="Terminal" icon="terminal" copy
+    npx create-next-app@latest my-app --yes
+    cd my-app
+    npm run dev
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash filename="Terminal" icon="terminal" copy
+    pnpm create next-app@latest my-app --yes
+    cd my-app
+    pnpm dev
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash filename="Terminal" icon="terminal" copy
+    yarn create next-app@latest my-app --yes
+    cd my-app
+    yarn dev
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash filename="Terminal" icon="terminal" copy
+    bun create next-app@latest my-app --yes
+    cd my-app
+    bun dev
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+`--yes` 옵션은 설치 중 표시되는 모든 프롬프트(질문)를 건너뛰고, 저장된 기본 설정 또는 기본값을 자동으로 사용합니다. 기본 구성에는 TypeScript, Tailwind, App Router, Turbopack이 활성화되며, @/* 경로 별칭이 설정됩니다.
+
+## 시스템 요구 사항
+시작하기 전에, 아래의 요구 사항을 충족하는지 확인하세요:
+
+- Node.js 20.9 이상
+- macOS, Windows(WSL 포함), 또는 Linux
+
+## CLI로 생성하기
+가장 빠르게 새로운 Next.js 앱을 만드는 방법은 create-next-app 명령어를 사용하는 것입니다. 이 도구는 필요한 설정을 자동으로 구성해줍니다.
+프로젝트를 생성하려면 아래 명령어를 실행하세요:
+```bash filename="Terminal" icon="terminal" copy
+npx create-next-app@latest
+```
+설치 과정에서 다음과 같은 프롬프트(질문)가 표시됩니다:
+```bash filename="Terminal" icon="terminal" copy
+What is your project named? my-app
+Would you like to use the recommended Next.js defaults?
+    Yes, use recommended defaults - TypeScript, ESLint, Tailwind CSS, App Router, Turbopack
+    No, reuse previous settings
+    No, customize settings - Choose your own preferences
+```
+설정을 직접 구성하기로 선택하면, 다음과 같은 프롬프트(질문)가 표시됩니다:
+```bash filename="Terminal" icon="terminal" copy
+Would you like to use TypeScript? No / Yes
+Which linter would you like to use? ESLint / Biome / None
+Would you like to use React Compiler? No / Yes
+Would you like to use Tailwind CSS? No / Yes
+Would you like your code inside a `src/` directory? No / Yes
+Would you like to use App Router? (recommended) No / Yes
+Would you like to customize the import alias (`@/*` by default)? No / Yes
+What import alias would you like configured? @/*
+```
+프롬프트를 모두 완료하면, create-next-app이 지정한 프로젝트 이름으로 폴더를 생성하고 필요한 종속 패키지들을 자동으로 설치합니다.
+
+## 수동 설치(Manual installation)
+
+새로운 Next.js 앱을 직접 생성하려면, 필요한 패키지들을 아래와 같이 설치하세요
+<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+  <Tabs.Tab>
+    ```bash filename="Terminal" icon="terminal" copy
+    npm i next@latest react@latest react-dom@latest
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash filename="Terminal" icon="terminal" copy
+    pnpm i next@latest react@latest react-dom@latest
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash filename="Terminal" icon="terminal" copy
+    yarn add next@latest react@latest react-dom@latest
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash filename="Terminal" icon="terminal" copy
+    bun add next@latest react@latest react-dom@latest
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+**💡 알아두면 좋은 점:**  
+App Router는 [React Canary 릴리스](https://react.dev/blog/2023/12/21/react-canary)를 내장하고 있으며, 이는 React 19의 안정적인 변경 사항과 함께 프레임워크에서 검증 중인 최신 기능들을 포함합니다. 반면 Pages Router는 `package.json`에 명시된 직접 설치한 React 버전을 사용합니다.
+
+그 다음, 아래의 스크립트를 `package.json` 파일에 추가하세요:
+```json filename="package.json" icon="json" copy
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  }
+}
+```
+이 스크립트들은 애플리케이션 개발의 다양한 단계를 나타냅니다:
+- `next dev`: Turbopack(기본 번들러)을 사용하여 개발 서버를 시작합니다.
+- `next build`: 프로덕션용으로 애플리케이션을 빌드합니다.
+- `next start`: 프로덕션 서버를 시작합니다.
+- `eslint`: ESLint를 실행합니다.
+
+현재 Turbopack이 기본 번들러로 설정되어 있습니다.
+Webpack을 사용하려면 `next dev --webpack` 또는 `next build --webpack` 명령을 실행하세요.
+설정 관련 자세한 내용은 Turbopack 문서를 참고하세요.

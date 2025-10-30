@@ -2,6 +2,22 @@ import { Footer, Layout, Navbar } from "nextra-theme-docs";
 import { Banner, Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 import "nextra-theme-docs/style.css";
+import localFont from 'next/font/local';
+import { JetBrains_Mono } from "next/font/google";
+
+const pretendard = localFont({
+  src: [
+    { path: '../public/fonts/Pretendard-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../public/fonts/Pretendard-Bold.woff2',    weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
+});
 
 export const metadata = {
   title: {
@@ -55,12 +71,11 @@ export const metadata = {
 };
 
 const banner = (
-  <Banner storageKey="some-key">WebssDocs 4.0 is released 🎉</Banner>
+  <Banner storageKey="some-key">WebssDocs 1.0 is released 🎉</Banner>
 );
 const navbar = (
   <Navbar
     logo={<b>WebssDocs</b>}
-
     projectLink="https://github.com/websszoa"
   />
 );
@@ -73,16 +88,12 @@ export default async function RootLayout({
 }) {
   return (
     <html
-      // Not required, but good for SEO
       lang="ko"
-      // Required to be set
       dir="ltr"
-      // Suggested by `next-themes` package https://github.com/pacocoursey/next-themes#with-app
       suppressHydrationWarning
+      className={`${pretendard.className} ${mono.variable}`}
     >
-      <Head
-      // ... Your additional head options
-      >
+      <Head>
         {/* Your additional tags should be passed as `children` of `<Head>` element */}
       </Head>
       <body>
@@ -90,7 +101,7 @@ export default async function RootLayout({
           banner={banner}
           navbar={navbar}
           pageMap={await getPageMap()}
-          docsRepositoryBase="https://github.com/shuding/nextra/tree/main/docs"
+          docsRepositoryBase="https://github.com/websszoa/docs"
           footer={footer}
           editLink={null}
           feedback={{content: null}}

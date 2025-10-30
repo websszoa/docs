@@ -1,8 +1,7 @@
 export default {
-  tools: "Tools",
-  next: "Next.js",
-  "###": {
-    type: "separator"
-  },
-  docker: "Docker",
-}
+    nextjs: "Next.js",
+    "###": {
+        type: "separator",
+    },
+    vuejs: "Vue.js",
+};
